@@ -2,7 +2,7 @@
 
 //Conexión a la base de datos
 $host = 'localhost';
-$dbname = 'gestion_educativa';
+$dbname = 'gestion_deportiva';
 $usuario = 'root';
 $pass = '';
 
