@@ -1,2 +1,18 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+* text=auto eol=lf
+
+*.php linguist-detectable=true
+*.js linguist-vendored
+*.css linguist-vendored
+*.html linguist-vendored
+*.json linguist-vendored
+*.scss linguist-vendored
+*.less linguist-vendored
+*.md linguist-vendored
+*.txt linguist-vendored
+*.svg linguist-vendored
+*.eot linguist-vendored
+*.ttf linguist-vendored
+*.woff linguist-vendored
+*.woff2 linguist-vendored
+*.map linguist-vendored
