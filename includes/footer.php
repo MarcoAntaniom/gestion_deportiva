@@ -38,5 +38,32 @@
 <script src="/gestion_deportiva/assets/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/gestion_deportiva/assets/js/pages/dashboard2.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Función para ajustar la posición del pie de página
+    function adjustFooter() {
+      var docHeight = $(window).height();
+      var footerHeight = $('.main-footer').outerHeight();
+      var footerTop = $('.main-footer').position().top + footerHeight;
+
+      if (footerTop < docHeight) {
+        $('.main-footer').css({
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+        });
+      } else {
+        $('.main-footer').css({
+          position: 'relative',
+        });
+      }
+    }
+
+    // Llamar a la función al cargar y redimensionar la ventana
+    adjustFooter();
+    $(window).resize(adjustFooter);
+  });
+</script>
 </body>
 </html>
