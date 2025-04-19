@@ -36,8 +36,6 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="/gestion_deportiva/assets/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/gestion_deportiva/assets/js/pages/dashboard2.js"></script>
 
 <script>
   $(document).ready(function () {
