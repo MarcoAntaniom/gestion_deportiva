@@ -41,9 +41,11 @@ require_once("../../includes/sidebar.php");
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nombre</th>
               <th>Escudo</th>
               <th>División</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -57,9 +59,14 @@ require_once("../../includes/sidebar.php");
 
             foreach ($equipos as $equipo): ?>
             <tr>
+              <td><?= $equipo['id']; ?></td>
               <td><?= $equipo['nombre']; ?></td>
               <td><img src="../img/escudos/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
               <td><?= $equipo['nombre_division']; ?></td>
+              <td>
+                <a href="editar_equipo.php?id=<?= $equipo['id'] ?>" class="btn btn-warning">Editar</a>
+                <button class="btn btn-danger" onclick="confirmarEliminacion(<?= $equipo['id']; ?>)">Eliminar</button>
+              </td>
             </tr>
             <?php endforeach; ?>
           </tbody>
@@ -73,6 +80,22 @@ require_once("../../includes/sidebar.php");
 <aside class="control-sidebar control-sidebar-dark"></aside>
 <?php require_once("../../includes/footer.php"); ?>
 
+<script>
+  function confirmarEliminacion(id) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "¡Este cambio no se puede desacer!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '../../src/deleteController.php?id=' + id;
+      }
+    });
+  }
+</script>
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
