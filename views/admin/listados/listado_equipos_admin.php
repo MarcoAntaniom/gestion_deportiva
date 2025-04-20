@@ -1,6 +1,6 @@
 <?php
-require_once("../../includes/header.php");
-require_once("../../includes/sidebar.php");
+require_once("../../../includes/header.php");
+require_once("../../../includes/sidebar.php");
 ?>
 
 <!-- /.sidebar -->
@@ -61,10 +61,10 @@ require_once("../../includes/sidebar.php");
             <tr>
               <td><?= $equipo['id']; ?></td>
               <td><?= $equipo['nombre']; ?></td>
-              <td><img src="../img/escudos/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
+              <td><img src="../../img/escudos/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
               <td><?= $equipo['nombre_division']; ?></td>
               <td>
-                <a href="editar_equipo.php?id=<?= $equipo['id'] ?>" class="btn btn-warning">Editar</a>
+                <a href="../editar/editar_equipo.php?id=<?= $equipo['id'] ?>" class="btn btn-warning">Editar</a>
                 <button class="btn btn-danger" onclick="confirmarEliminacion(<?= $equipo['id']; ?>)">Eliminar</button>
               </td>
             </tr>
@@ -78,7 +78,7 @@ require_once("../../includes/sidebar.php");
 </div>
 
 <aside class="control-sidebar control-sidebar-dark"></aside>
-<?php require_once("../../includes/footer.php"); ?>
+<?php require_once("../../../includes/footer.php"); ?>
 
 <script>
   function confirmarEliminacion(id) {
@@ -91,7 +91,7 @@ require_once("../../includes/sidebar.php");
       cancelButtonText: 'No, cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = '../../src/deleteController.php?id=' + id;
+        window.location.href = '../../../src/deleteController.php?id=' + id;
       }
     });
   }

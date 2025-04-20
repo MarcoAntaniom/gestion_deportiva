@@ -51,7 +51,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="listado_equipo.php" class="nav-link">
+                <a href="listados/listado_equipos_admin.php" class="nav-link">
                 <i class="fa-solid fa-users"></i>
                 <p>Listado de Equipos</p>
                 </a>
