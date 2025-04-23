@@ -19,9 +19,13 @@ if (isset($_GET['id'])) {
                     icon: 'error',
                     title: 'Error',
                     text: 'Equipo no encontrado.',
-                    confirmButtonText: 'Aceptar'
-                }).then(function() {
-                    window.location.href = 'listado_equipos_admin.php';
+                    confirmButtonText: 'Aceptar',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'listado_equipos_admin.php';
+                    }
                 });
               </script>";
         exit;
@@ -38,9 +42,13 @@ if (isset($_GET['id'])) {
                 icon: 'error',
                 title: 'Error',
                 text: 'ID no especificado.',
-                confirmButtonText: 'Aceptar'
-            }).then(function() {
-                window.location.href = 'listado_equipos_admin.php';
+                confirmButtonText: 'Aceptar',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'listado_equipos_admin.php';
+                }
             });
           </script>";
     exit;
@@ -75,9 +83,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 icon: 'success',
                 title: 'Actualización exitosa',
                 text: 'El equipo se ha actualizado correctamente.',
-                confirmButtonText: 'Aceptar'
-            }).then(function() {
-                window.location.href = '../index.php';
+                confirmButtonText: 'Aceptar',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../index.php';
+                }
             });
           </script>";
     exit;

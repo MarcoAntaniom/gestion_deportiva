@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
     //Redirigir al listado de equipos con un mensaje de éxito
     echo "<script>
         alert('El equipo ha sido eliminado correctamente.');
-        window.location.href = '../views/listados/listado_equipos_admin.php';
+        window.location.href = '../views/admin/listados/listado_equipos_admin.php';
         </script>";
     exit;
 } else {

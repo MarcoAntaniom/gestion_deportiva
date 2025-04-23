@@ -61,7 +61,7 @@ require_once("../../../includes/sidebar.php");
             <tr>
               <td><?= $equipo['id']; ?></td>
               <td><?= $equipo['nombre']; ?></td>
-              <td><img src="../../img/escudos/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
+              <td><img src="../../img/escudos/primera/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
               <td><?= $equipo['nombre_division']; ?></td>
               <td>
                 <a href="../editar/editar_equipo.php?id=<?= $equipo['id'] ?>" class="btn btn-warning">Editar</a>

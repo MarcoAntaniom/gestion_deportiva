@@ -1,7 +1,6 @@
 <?php
 require_once(__DIR__ . "/../config/bd.php"); 
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +25,6 @@ session_start();
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark">

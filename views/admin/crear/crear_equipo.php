@@ -32,14 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
+    // Obtener el nombre de la división
+    $stmt = $conexion->prepare("SELECT division FROM divisiones WHERE id = :division_id");
+    $stmt->bindParam(":division_id", $division_equipo);
+    $stmt->execute();
+    $division = $stmt->fetch(PDO::FETCH_ASSOC)['division'];
+
+    // Crear la carpeta de la división si no existe
+    $rutaCarpeta = "../../img/escudos/" . $division;
+    if (!is_dir($rutaCarpeta)) {
+        mkdir($rutaCarpeta, 0777, true);  // Crear la carpeta con permisos adecuados
+    }
+
     // Generar un nombre único para el archivo de imagen
     $fecha = new DateTime();
     $nombreArchivoEscudo = $fecha->getTimestamp() . "_" . $escudo_equipo['name'];
     $tmpEscudo = $escudo_equipo['tmp_name'];
 
-    // Subir el archivo de imagen
+    // Subir el archivo de imagen a la carpeta correspondiente
     if ($tmpEscudo != "") {
-        $rutaDestino = "../../img/escudos/" . $nombreArchivoEscudo;
+        $rutaDestino = $rutaCarpeta . "/" . $nombreArchivoEscudo;
         if (!move_uploaded_file($tmpEscudo, $rutaDestino)) {
             echo "<script>
                 Swal.fire({
@@ -76,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'No se pudo crear el equipo. Error: " . $e->getMessage() . "'
+                text: 'No se pudo crear el equipo. Error: " . $e->getMessage() . "' 
             });
             </script>";
     }
