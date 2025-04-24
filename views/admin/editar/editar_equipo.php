@@ -64,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_FILES['escudo']['name'])) {
         $escudo = $_FILES['escudo']['name'];
         $tmp = $_FILES['escudo']['tmp_name'];
-        move_uploaded_file($tmp, "../../img/escudos/" . $escudo); // Ruta de escudos
+        // Aquí se usa la ruta dinámica basada en la división
+        $rutaEscudo = "../../img/escudos/" . strtolower($divisiones[$division_id - 1]['division']) . "/" . $escudo;
+        move_uploaded_file($tmp, $rutaEscudo); // Ruta de escudos
     } else {
         $escudo = $escudo_actual; // Mantiene el escudo actual si no se sube uno nuevo
     }
@@ -146,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <div class="form-group">
             <label for="escudo">Escudo (imagen actual debajo)</label><br>
-            <img src="../../img/escudos/<?= htmlspecialchars($equipo['escudo']) ?>" width="120" alt="Escudo actual"><br><br>
+            <img src="../../img/escudos/<?= strtolower($divisiones[$equipo['division_id'] - 1]['division']); ?>/<?= htmlspecialchars($equipo['escudo']) ?>" width="120" alt="Escudo actual"><br><br>
             <input type="file" class="form-control-file" id="escudo" name="escudo">
             <small class="form-text text-muted">Si no seleccionas una nueva imagen, se mantendrá la actual.</small>
           </div>

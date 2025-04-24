@@ -38,6 +38,23 @@ require_once("../../includes/sidebar.php");
         </div>
       </div>
       <div class="card-body">
+
+        <?php
+        // Obtener divisiones para el filtro
+        $divisiones_stmt = $conexion->prepare("SELECT * FROM divisiones");
+        $divisiones_stmt->execute();
+        $divisiones = $divisiones_stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <div class="mb-3">
+          <label for="filtroDivision">Filtrar por División:</label>
+          <select id="filtroDivision" class="form-control" style="width: 250px;">
+            <option value="">Todas las divisiones</option>
+            <?php foreach ($divisiones as $division): ?>
+              <option value="<?= $division['division']; ?>"><?= $division['division']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -58,7 +75,9 @@ require_once("../../includes/sidebar.php");
             foreach ($equipos as $equipo): ?>
             <tr>
               <td><?= $equipo['nombre']; ?></td>
-              <td><img src="../img/escudos/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
+              <td>
+                <img src="../img/escudos/<?= strtolower($equipo['nombre_division']); ?>/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px">
+              </td>
               <td><?= $equipo['nombre_division']; ?></td>
             </tr>
             <?php endforeach; ?>

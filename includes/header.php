@@ -22,6 +22,12 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="/gestion_deportiva/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/gestion_deportiva/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min. css">
+  <link rel="stylesheet" href="/gestion_deportiva/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">

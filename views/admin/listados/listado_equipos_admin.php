@@ -38,6 +38,23 @@ require_once("../../../includes/sidebar.php");
         </div>
       </div>
       <div class="card-body">
+
+        <?php
+        // Obtener divisiones para el filtro
+        $divisiones_stmt = $conexion->prepare("SELECT * FROM divisiones");
+        $divisiones_stmt->execute();
+        $divisiones = $divisiones_stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <div class="mb-3">
+          <label for="filtroDivision">Filtrar por División:</label>
+          <select id="filtroDivision" class="form-control" style="width: 250px;">
+            <option value="">Todas las divisiones</option>
+            <?php foreach ($divisiones as $division): ?>
+              <option value="<?= $division['division']; ?>"><?= $division['division']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -61,7 +78,7 @@ require_once("../../../includes/sidebar.php");
             <tr>
               <td><?= $equipo['id']; ?></td>
               <td><?= $equipo['nombre']; ?></td>
-              <td><img src="../../img/escudos/primera/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
+              <td><img src="../../img/escudos/<?= strtolower($equipo['nombre_division']); ?>/<?= $equipo['escudo'] ?>" alt="Escudo de <?= $equipo['nombre']; ?>" width="50px"></td>
               <td><?= $equipo['nombre_division']; ?></td>
               <td>
                 <a href="../editar/editar_equipo.php?id=<?= $equipo['id'] ?>" class="btn btn-warning">Editar</a>
@@ -80,14 +97,43 @@ require_once("../../../includes/sidebar.php");
 <aside class="control-sidebar control-sidebar-dark"></aside>
 <?php require_once("../../../includes/footer.php"); ?>
 
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 'equipo_eliminado'): ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: 'El equipo ha sido eliminado correctamente.',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'listado_equipos_admin.php';
+            }
+        });
+    </script>
+<?php elseif (isset($_GET['error'])): ?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ocurrió un problema. Intente nuevamente.',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'listado_equipos_admin.php';
+            }
+        });
+    </script>
+<?php endif; ?>
+
 <script>
   function confirmarEliminacion(id) {
     Swal.fire({
-      title: '¿Estas seguro?',
-      text: "¡Este cambio no se puede desacer!",
+      title: '¿Estás seguro?',
+      text: "¡Este cambio no se puede deshacer!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si, eliminar',
+      confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'No, cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -96,13 +142,6 @@ require_once("../../../includes/sidebar.php");
     });
   }
 </script>
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
 </body>
 </html>

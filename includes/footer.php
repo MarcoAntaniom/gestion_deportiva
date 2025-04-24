@@ -36,6 +36,20 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="/gestion_deportiva/assets/js/demo.js"></script>
+<!-- DataTables JS -->
+<script src="/gestion_deportiva/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/jszip/jszip.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/gestion_deportiva/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
 
 <script>
   $(document).ready(function () {
@@ -63,5 +77,22 @@
     $(window).resize(adjustFooter);
   });
 </script>
+
+<!-- SCRIPT PARA LA DATATABLE DE FILTRADO DE EQUIPOS -->
+<script>
+  $(document).ready(function () {
+    var tabla = $('#example1').DataTable();
+
+    $('#filtroDivision').on('change', function () {
+      var division = $(this).val();
+      if (division) {
+        tabla.column(3).search('^' + division + '$', true, false).draw(); // Filtro exacto
+      } else {
+        tabla.column(3).search('').draw(); // Mostrar todas
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
